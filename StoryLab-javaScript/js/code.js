@@ -1,10 +1,10 @@
 
 
 function abc(){
-    console.log(window.tokenizer)
+    document.getElementById('outputText').innerText =  "predict(base, 1"
 }
 function generate(){
-    predict(base, 10);
+    document.getElementById('outputText').innerText =  predict(base, 10);
 }
 
 const base = "from fairest creatures we desire increase that thereby beautys rose might never die but as the riper should by time decease his tender heir might bear his memory but thou contracted to thine own bright eyes feedst thy lights flame with selfsubstantial fuel making a famine where abundance lies thygrossly blood"
@@ -50,7 +50,7 @@ function predict(phrase, num){
         phrase = phrase.substr(e+1, phrase.length-1)
 
     }
-    console.log(pre + " " + phrase)
+    return pre + " " + phrase
 }
 
 //devuelve el indice de la palabra mas posible

@@ -2,14 +2,49 @@
 <html lang="en">
     <head>
         <title>The story Lab</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/style.css">
     </head>
-
     <body>
-        <button id= "button" onclick="abc()">Click me</button>    
-        <button id= "StartButton" onclick="generate()">Start</button>    
+        <table> 
+
+            <tr><!-- title -->
+                <th>
+                    <button button id= "button" onclick="abc()">Click me</button> 
+                </th>
+            </tr>
+
+            <tr><!-- parameters-->
+                <th class="bordered" col=2>
+                    <button button class= "basicButton" id= "button" onclick="abc()">Click me</button> 
+                    <h3> Number of cars</h3>
+                    <select id="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="vw">VW</option>
+                        <option value="audi" selected>Audi</option>
+                    </select>
+                </th>
+            </tr> 
+                
+            <tr><!--start button-->
+                <th>
+                    <button button class= "basicButton" id= "StartButton" onclick="generate()">Start</button>
+                </th>
+            </tr> 
+    
+            <tr><!--output text field-->
+                <td>
+                    <p class="bordered" id = "outputText">.</p>
+                </td>
+            </tr>
+
+            </table>
+
+
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
         <script src="https://cdn.jsdelivr.net/gh/nicolaspanel/numjs@0.15.1/dist/numjs.min.js"></script>
 
-        <script src="code.js"></script>
+        <script src="js/code.js"></script>
     </body>
 </html>
