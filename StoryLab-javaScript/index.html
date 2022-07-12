@@ -6,40 +6,31 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <table> 
 
-            <tr><!-- title -->
-                <th>
-                    <button button id= "button" onclick="abc()">Click me</button> 
-                </th>
-            </tr>
+            <div><!-- title -->
+                <button button id= "button" onclick="abc()">Click me</button> 
+            </div>
 
-            <tr><!-- parameters-->
-                <th class="bordered" col=2>
-                    <button button class= "basicButton" id= "button" onclick="abc()">Click me</button> 
+            <div class=bordered id = parameters><!-- parameters-->
+                <button button class= "basicButton" id= "basicButton" onclick="abc()">imabasicbutoon me</button> 
+                <div id="cars">
                     <h3> Number of cars</h3>
-                    <select id="cars">
+                    <select >
                         <option value="volvo">Volvo</option>
                         <option value="saab">Saab</option>
                         <option value="vw">VW</option>
                         <option value="audi" selected>Audi</option>
                     </select>
-                </th>
-            </tr> 
+                </div>
+            </div> 
                 
-            <tr><!--start button-->
-                <th>
-                    <button button class= "basicButton" id= "StartButton" onclick="generate()">Start</button>
-                </th>
-            </tr> 
+            <div><!--start button-->
+                <button button class= "basicButton" id= "StartButton" onclick="generate()">Start</button>
+            </div> 
     
-            <tr><!--output text field-->
-                <td>
-                    <p class="bordered" id = "outputText">.</p>
-                </td>
-            </tr>
-
-            </table>
+            <div><!--output text field-->
+                <p class="bordered" id = "outputText">.</p>
+            </div>
 
 
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js"> </script>
