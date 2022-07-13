@@ -84,7 +84,9 @@ const loadModel =  async() => {
 // iniciamos el game
 function startGame() {    
     startButton.disabled = true;//el boton de inicio solo funciona a partir de que loadmodel acabe
+    setTimeout(function(){
     loadModel();
+    }, 1000)
 }
 
 //convierte una frase en una sucesion de numeros
