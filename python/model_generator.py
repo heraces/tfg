@@ -30,7 +30,7 @@ def clean_text(doc):
 
 tokens = clean_text(data)
 #numero de palabras que va a tomar en cuenta para generar el output
-lenght = 50 + 1
+lenght = 30 + 1
 lines = []
 
 for i in range(lenght, len(tokens)):
@@ -54,7 +54,7 @@ y = to_categorical(y, num_classes= vocab_size)
 
 seq_lenght = x.shape[1]
 model = Sequential()
-model.add(Embedding(vocab_size,50, input_length = seq_lenght))
+model.add(Embedding(vocab_size,30, input_length = seq_lenght))
 model.add(LSTM(100, return_sequences = True))
 model.add(LSTM(100))
 model.add(Dense(100, activation = "relu"))
@@ -62,7 +62,7 @@ model.add(Dense(vocab_size, activation = "softmax"))
 
 model.compile(loss = "categorical_crossentropy", optimizer = "adam", metrics = ["accuracy"])
 
-model.fit(x, y, batch_size = 256, epochs=100)
+model.fit(x, y, batch_size = 256, epochs=50)
 
-model.save("LSTM.h5")
+model.save("LSTM-30w.h5")
 

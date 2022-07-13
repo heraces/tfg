@@ -55,7 +55,7 @@ y = to_categorical(y, num_classes= vocab_size)
 
 
 seq_lenght = x.shape[1]
-model = models.load_model("LSTM.h5")
+model = models.load_model("LSTM-30w.h5")
 tfjs.converters.save_keras_model(model, "saved_model")
 #seed_text la frase desde la que saldra todo el text
 #n_words las palabras que tiene que adivinar
@@ -64,7 +64,7 @@ def generate_text_sequence(model, tokenizer, seed_text, nwords):
 
     for _ in range(nwords):
         encoded = tokenizer.texts_to_sequences([seed_text])[0]#index de la palabra
-        encoded = pad_sequences([encoded], maxlen = 50, truncating = "pre")
+        encoded = pad_sequences([encoded], maxlen = 30, truncating = "pre")
         y_predict = np.argmax(model.predict(encoded), axis=-1)
         predicted_word = ""
 
@@ -81,7 +81,7 @@ def generate_text_sequence(model, tokenizer, seed_text, nwords):
 
 
 if __name__ == "__main__":
-    empezar = " ".join(tokens[:50])
+    empezar = " ".join(tokens[:30])
     print(datetime.datetime.now())
-    print(empezar + generate_text_sequence(model, tokenizer, " ".join(tokens[:50]), 100))
+    print(empezar + generate_text_sequence(model, tokenizer, " ".join(tokens[:30]), 100))
     print(datetime.datetime.now())

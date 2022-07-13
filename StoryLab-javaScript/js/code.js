@@ -1,21 +1,82 @@
 
 
 function abc(){
-    document.getElementById('outputText').innerText =  "predict(base, 1"
+    outputText.innerText =  "predict(base, 1"
 }
 function generate(){
-    document.getElementById('outputText').innerText =  predict(base, 10);
+    startButton.disabled = true;
+    var size = 0;
+    if (duration.value == "short"){
+        size = 20;
+    }
+    else{
+        if(duration.value == "medium"){
+            size = 50
+        }
+        else{
+            size = 100
+        }
+    }
+    text = "once upon a time in England"
+    
+    if(model_type == "Shakesperean"){
+        textDeliverShakespear(size);
+    }
+    else if (model_type == "Informal"){
+        textDeliverInformal(size);
+    }
+    else{
+        textDeliverMix(size);
+    }
+
+    
+    startButton.disabled = false;
 }
 
+function textDeliverShakespear(size){
+    for (var i = 0; i< size; i++){
+        setTimeout(() => {
+            text += predict50(text);
+            outputText.innerText = text;}, 75);
+    }
+}
+
+function textDeliverInformal(size){
+    for (var i = 0; i< size; i++){
+        setTimeout(() => {
+            text += predict30(text);
+            outputText.innerText = text;}, 75);
+    }
+}
+
+function textDeliverMix(size){
+    for (var i = 0; i< size; i++){
+        setTimeout(() => {
+            if(Math.random() < 0.5){
+                text += predict30(text);
+            }
+            else{
+                text += predict50(text);
+            }
+            outputText.innerText = text;}, 75);
+    }
+}
+
+var text = "";
 const base = "from fairest creatures we desire increase that thereby beautys rose might never die but as the riper should by time decease his tender heir might bear his memory but thou contracted to thine own bright eyes feedst thy lights flame with selfsubstantial fuel making a famine where abundance lies thygrossly blood"
 
 var tokenizer;
 const startButton = document.getElementById("StartButton");
+const outputText = document.getElementById("outputText");
+
+const duration = document.getElementById("duration");
+const model_type = document.getElementById("duration");
 
 //cargamos el modelo y las palabras convertidas en tokens
 const loadModel =  async() => {
     try{
-        window.model = await tf.loadLayersModel('./model_json/model.json');
+        window.model50 = await tf.loadLayersModel('./model_json/model.json');
+        window.model30 = await tf.loadLayersModel('./model_json30/model.json');
         await fetch("./tokens/tokenizer").then(response => response.json()).then(data => window.tokenizer = data);
         startButton.disabled = false;
     }
@@ -32,33 +93,49 @@ function startGame() {
 }
 
 //convierte una frase en una sucesion de numeros
-function predict(phrase, num){
-    const pre = phrase.substr(0, num)
-    for(var i = 0; i<10; i++){
-
-        const encoded = encode(phrase);
-        const a = model.predict(tf.tensor([encoded]))
-        const b = adivinaElIndice(a.arraySync()[0])//generamos la siguiente palabra
-
-        phrase += " " + getTheToken(b)//añadimos la siguiente palabra
-
-
-        var e = 0;//eliminamos la primera palabra
-        while (phrase[e]!= " "){
-            e++;
+function predict50(phrase){
+    var encoded = encode(phrase);
+    if(encoded.length < 50){//si la phrase es desmasiado corta le añadimos ceros
+        const h = []
+        while (encoded.length + h.length < 50){
+            h.push(0)
         }
-        phrase = phrase.substr(e+1, phrase.length-1)
-
+        encoded = h.concat(encoded)
     }
-    return pre + " " + phrase
+    if(encoded.length>50){//si es demasiado larga la acortamos
+        encoded = encoded.slice(encoded.length-51,encoded.length-1)
+    }
+    const a = model50.predict(tf.tensor([encoded]))
+    const b = adivinaElIndice(a.arraySync()[0])//generamos la siguiente palabra
+
+    return " " + getTheToken(b)
 }
+
+function predict30(phrase){
+    var encoded = encode(phrase);
+    if(encoded.length < 30){//si la phrase es desmasiado corta le añadimos ceros
+        const h = []
+        while (encoded.length + h.length < 30){
+            h.push(0)
+        }
+        encoded = h.concat(encoded)
+    }
+    if(encoded.length>30){//si es demasiado larga la acortamos
+        encoded = encoded.slice(encoded.length-31,encoded.length-1)
+    }
+    const a = model30.predict(tf.tensor([encoded]))
+    const b = adivinaElIndice(a.arraySync()[0])//generamos la siguiente palabra
+
+    return " " + getTheToken(b)
+}
+
 
 //devuelve el indice de la palabra mas posible
 function adivinaElIndice(adivina){
     var index = 0;
     var maxValue = 0;
     for (var i = 0; i< adivina.length; i++){
-        if (adivina[i] > maxValue){
+        if (adivina[i] > maxValue && Math.random() < 0.5){
             maxValue = adivina[i];
             index = i;
         }
