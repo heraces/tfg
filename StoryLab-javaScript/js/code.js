@@ -1,5 +1,4 @@
 
-
 function abc(){
     outputText.innerText =  "predict(base, 1"
 }
