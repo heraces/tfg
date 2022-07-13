@@ -49,6 +49,7 @@ function textDeliverInformal(size){
     }
 }
 
+
 function textDeliverMix(size){
     for (var i = 0; i< size; i++){
         setTimeout(() => {
