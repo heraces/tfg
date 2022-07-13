@@ -75,15 +75,10 @@ const model_type = document.getElementById("duration");
 
 //cargamos el modelo y las palabras convertidas en tokens
 const loadModel =  async() => {
-    try{
-        window.model50 = await tf.loadLayersModel('./model_json/model.json');
-        window.model30 = await tf.loadLayersModel('./model_json30/model.json');
+        window.model50 = await tf.loadLayersModel('https://raw.githubusercontent.com/heraces/tfg/main/StoryLab-javaScript/model_json/model.json');
+        window.model30 = await tf.loadLayersModel('https://raw.githubusercontent.com/heraces/tfg/main/StoryLab-javaScript/model_json30/model.json');
         await fetch("./tokens/tokenizer").then(response => response.json()).then(data => window.tokenizer = data);
         startButton.disabled = false;
-    }
-    catch{
-        console.log("Problema al cargar el modelo")
-    }
     return true;
 }
 
