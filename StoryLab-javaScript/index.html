@@ -7,13 +7,14 @@
     </head>
     <body>
 
-            <div><!-- title -->
-                <h1 id="title">The Story lab</h1> 
-            </div>
+        <div class="basicDiv"><!-- title -->
+            <h1 id="title">The Story lab</h1> 
+        </div>
 
+        <div class="basicDiv">
             <div id = parameters><!-- parameters-->
-                <div id="cars">
-                    <h3> Style</h3>
+                <div class="basicDiv">
+                    <h2> Style</h2>
                     <select id="model" >
                         <option value="Informal">Informal</option>
                         <option value="Shakesperean">Shakesperean</option>
@@ -21,23 +22,23 @@
                     </select>
                 </div>
 
-                <div id="cars">
-                    <h3> Duration</h3>
+                <div class="basicDiv">
+                    <h2> Duration</h2>
                     <select id="duration" >
-                        <option value="short">Short</option>
-                        <option value="medium">Medium</option>
-                        <option value="long">Long</option>
+                        <option value="15">One Liner</option>
+                        <option value="50">Short</option>
+                        <option value="150">Medium</option>
+                        <option value="200">Long</option>
                     </select>
                 </div>
             </div> 
-                
-            <div><!--start button-->
+                <!--start button-->
                 <button button class= "basicButton" id= "StartButton" onclick="generate()">Start</button>
-            </div> 
+        </div>
     
-            <div><!--output text field-->
-                <p class="bordered" id = "outputText">.</p>
-            </div>
+        <div class="basicDiv"><!--output text field-->
+            <h3 class="bordered" id = "outputText">.</h3>
+        </div>
 
 
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js" type="text/javascript"> </script>

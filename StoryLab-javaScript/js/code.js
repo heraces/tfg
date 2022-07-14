@@ -4,18 +4,7 @@ function abc(){
 }
 function generate(){
     startButton.disabled = true;
-    var size = 0;
-    if (duration.value == "short"){
-        size = 20;
-    }
-    else{
-        if(duration.value == "medium"){
-            size = 50
-        }
-        else{
-            size = 100
-        }
-    }
+    var size = duration.value;
     text = "once upon a time in England"
     
     if(model_type == "Shakesperean"){
