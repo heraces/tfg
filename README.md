@@ -1,2 +1,2 @@
 # The Story Lab 
-<a href = https://htmlpreview.github.io/?https://github.com/heraces/tfg/blob/main/StoryLab-javaScript/index.html> Link to the game<a>
+<a href = https://clinquant-trifle-204d41.netlify.app> Link to the game<a>
