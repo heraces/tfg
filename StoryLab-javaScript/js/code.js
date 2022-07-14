@@ -1,8 +1,8 @@
 
-function abc(){
-    outputText.innerText =  "predict(base, 1"
-}
+
 function generate(){
+    startButton.style.color = 'gray';
+    startButton.style.backgroundColor = '#dfdfdf'
     startButton.disabled = true;
     var size = duration.value;
     text = "once upon a time in England"
@@ -19,6 +19,8 @@ function generate(){
 
     
     startButton.disabled = false;
+    startButton.style.color = 'black';
+    startButton.style.backgroundColor = '#a1a2a9'
 }
 
 function textDeliverShakespear(size){
@@ -121,7 +123,7 @@ function adivinaElIndice(adivina){
     var index = 0;
     var maxValue = 0;
     for (var i = 0; i< adivina.length; i++){
-        if (adivina[i] > maxValue && Math.random() < 0.5){
+        if (adivina[i] > maxValue && Math.random() < 0.8){
             maxValue = adivina[i];
             index = i;
         }
